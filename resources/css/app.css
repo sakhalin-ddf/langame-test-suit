@@ -1,0 +1,61 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 0 0 40px;
+}
+
+.article-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 12px;
+}
+
+.article-list .card-img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: center;
+}
+
+.article-list .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.article-list .card-title {
+    min-height: 60px;
+    margin: 0 0 8px;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.article-list .card-text {
+    font-size: 14px;
+    line-height: 18px;
+    flex-grow: 1;
+}
+
+.article-list .card-read-more {
+    margin: 0 0 8px;
+}
+
+.article-list .card-categories {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.article-list .card-categories .btn {
+    padding: 6px 6px;
+    font-size: 10px;
+    line-height: 1;
+}

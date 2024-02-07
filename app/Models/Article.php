@@ -24,6 +24,8 @@ class Article extends Model
 {
     use HasFactory;
 
+    protected $with = ['categories'];
+
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class, 'article_category');
