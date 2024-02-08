@@ -25,6 +25,12 @@ class FillArticlesCommand extends Command
         $items = $xml->xpath('//item');
 
         foreach ($items as $item) {
+            $exists = Article::query()->where(['original_url' => (string) $item->link])->get();
+
+            if ($exists->count() > 0) {
+                continue;
+            }
+
             $article = new Article();
 
             $article->original_url = (string)$item->link;

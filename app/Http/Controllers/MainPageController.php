@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Repositories\ArticleRepository;
 use Illuminate\Http\Request;
 
-class WelcomeController
+class MainPageController
 {
     public function __construct(
         private readonly ArticleRepository $articleRepository,
@@ -15,7 +15,7 @@ class WelcomeController
         // do nothing
     }
 
-    public function welcome(Request $request)
+    public function render(Request $request)
     {
         $query = $request->query->get('query');
 

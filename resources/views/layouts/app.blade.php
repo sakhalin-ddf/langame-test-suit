@@ -12,7 +12,30 @@
 <div class="pt-5 pb-5">
     <div class="container">
         <h1>Langame test suite</h1>
-        @yield('content')
+
+        <ul class="nav nav-pills mb-5">
+            <li class="nav-item">
+                <a
+                    @class(['nav-link', 'active' => Route::getCurrentRoute()->uri === '/'])
+                    @if(Route::getCurrentRoute()->uri === '/') aria-current="page" @endif
+                    href="/"
+                >
+                    Поиск статей
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
+                    @class(['nav-link', 'active' => Route::getCurrentRoute()->uri === 'create-article'])
+                    @if(Route::getCurrentRoute()->uri === 'create-article') aria-current="page" @endif
+                    href="/create-article"
+                >
+                    Новая статья
+                </a>
+            </li>
+        </ul>
+        <div>
+            @yield('content')
+        </div>
     </div>
 </div>
 @vite('resources/js/app.js')

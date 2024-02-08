@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Search articles</h2>
-
     <form id="articles-search-form">
         <div class="input-group input-group-lg mb-5">
             <input type="search" name="query" class="form-control" value="{{ $query }}" placeholder="Введите ваш поисковый запрос">

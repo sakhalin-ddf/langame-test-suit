@@ -36,7 +36,7 @@ class FillCategoriesCommand extends Command
                 'Лига чемпионов',
             ],
 
-            'Баскетбоа' => [
+            'Баскетбол' => [
                 'Чемпионат Мира',
                 'NBA',
                 'Женский',

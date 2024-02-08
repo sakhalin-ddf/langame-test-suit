@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\CreateArticlePageController;
+use App\Http\Controllers\MainPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(WelcomeController::class)->group(function () {
-    Route::get('/', 'welcome');
-});
+Route::get('/', [MainPageController::class, 'render']);
+Route::get('create-article', [CreateArticlePageController::class, 'render']);
