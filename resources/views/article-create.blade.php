@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col">
+        <div class="col-lg">
             <div class="p-5 bg-body-tertiary rounded-3">
                 <div class="container-fluid py-3">
                     <form method="POST" enctype="multipart/form-data">
@@ -12,13 +12,13 @@
 
                         <div class="mb-2">
                             <label
-                                for="create-article-sync-title-input"
+                                for="article-create-sync-title-input"
                                 class="form-label"
                             >
                                 Заголовок
                             </label>
                             <input
-                                id="create-article-sync-title-input"
+                                id="article-create-sync-title-input"
                                 class="form-control"
                                 type="text"
                                 name="title"
@@ -29,14 +29,14 @@
 
                         <div class="mb-2">
                             <label
-                                for="create-article-sync-file-input"
+                                for="article-create-sync-file-input"
                                 class="form-label"
                             >
                                 Изображение
                             </label>
 
                             <input
-                                id="create-article-sync-file-input"
+                                id="article-create-sync-file-input"
                                 class="form-control"
                                 type="file"
                                 name="file"
@@ -45,16 +45,15 @@
                             >
                         </div>
 
-
                         <div class="mb-2">
                             <label
-                                for="create-article-sync-preview-input"
+                                for="article-create-sync-preview-input"
                                 class="form-label"
                             >
                                 Анонс
                             </label>
                             <textarea
-                                id="create-article-sync-preview-input"
+                                id="article-create-sync-preview-input"
                                 class="form-control"
                                 name="preview"
                                 rows="4"
@@ -65,13 +64,13 @@
 
                         <div class="mb-2">
                             <label
-                                for="create-article-sync-content-input"
+                                for="article-create-sync-content-input"
                                 class="form-label"
                             >
                                 Текст статьи
                             </label>
                             <textarea
-                                id="create-article-sync-content-input"
+                                id="article-create-sync-content-input"
                                 class="form-control"
                                 name="content"
                                 rows="4"
@@ -82,13 +81,13 @@
 
                         <div class="mb-2">
                             <label
-                                for="create-article-sync-categories-input"
+                                for="article-create-sync-categories-input"
                                 class="form-label"
                             >
                                 Рубрики
                             </label>
                             <select
-                                id="create-article-sync-categories-input"
+                                id="article-create-sync-categories-input"
                                 class="form-control"
                                 name="categories[]"
                                 multiple
@@ -110,21 +109,21 @@
             </div>
         </div>
 
-        <div class="col">
+        <div class="col-lg">
             <div class="p-5 bg-body-tertiary rounded-3">
                 <div class="container-fluid py-3">
-                    <form id="create-article-async-form">
-                        <h2 class="mb-4">Синхронное создание статьи</h2>
+                    <form id="article-create-async-form">
+                        <h2 class="mb-4">Асинхронное создание статьи</h2>
 
                         <div class="mb-2">
                             <label
-                                for="create-article-async-title-input"
+                                for="article-create-async-title-input"
                                 class="form-label"
                             >
                                 Заголовок
                             </label>
                             <input
-                                id="create-article-async-title-input"
+                                id="article-create-async-title-input"
                                 class="form-control"
                                 type="text"
                                 name="title"
@@ -135,13 +134,31 @@
 
                         <div class="mb-2">
                             <label
-                                for="create-article-async-preview-input"
+                                for="article-create-async-file-input"
+                                class="form-label"
+                            >
+                                Изображение
+                            </label>
+
+                            <input
+                                id="article-create-async-file-input"
+                                class="form-control"
+                                type="file"
+                                name="file"
+                                required
+                                accept="image/*"
+                            >
+                        </div>
+
+                        <div class="mb-2">
+                            <label
+                                for="article-create-async-preview-input"
                                 class="form-label"
                             >
                                 Анонс
                             </label>
                             <textarea
-                                id="create-article-async-preview-input"
+                                id="article-create-async-preview-input"
                                 class="form-control"
                                 name="preview"
                                 rows="4"
@@ -152,13 +169,13 @@
 
                         <div class="mb-2">
                             <label
-                                for="create-article-async-content-input"
+                                for="article-create-async-content-input"
                                 class="form-label"
                             >
                                 Текст статьи
                             </label>
                             <textarea
-                                id="create-article-async-content-input"
+                                id="article-create-async-content-input"
                                 class="form-control"
                                 name="content"
                                 rows="4"
@@ -169,13 +186,14 @@
 
                         <div class="mb-2">
                             <label
-                                for="create-article-async-categories-input"
+                                for="article-create-async-categories-input"
                                 class="form-label"
                             >
                                 Рубрики
                             </label>
+
                             <select
-                                id="create-article-async-categories-input"
+                                id="article-create-async-categories-input"
                                 class="form-control"
                                 name="categories[]"
                                 multiple

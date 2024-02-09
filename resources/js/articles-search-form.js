@@ -25,7 +25,7 @@
 
         history.replaceState({}, document.title, url);
 
-        fetch('/api/articles', {
+        fetch('/api/articles/search', {
             method: 'POST',
             body: new FormData(e.target),
         })

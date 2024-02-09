@@ -25,9 +25,9 @@
             </li>
             <li class="nav-item">
                 <a
-                    @class(['nav-link', 'active' => Route::getCurrentRoute()->uri === 'create-article'])
-                    @if(Route::getCurrentRoute()->uri === 'create-article') aria-current="page" @endif
-                    href="/create-article"
+                    @class(['nav-link', 'active' => Route::getCurrentRoute()->uri === 'article-create'])
+                    @if(Route::getCurrentRoute()->uri === 'article-create') aria-current="page" @endif
+                    href="/article-create"
                 >
                     Новая статья
                 </a>

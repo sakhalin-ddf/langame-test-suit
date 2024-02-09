@@ -16,7 +16,6 @@ class CreateArticleHandler
         $article->preview = $query->preview;
         $article->content = $query->content;
         $article->image = $query->image;
-        $article->original_url = $query->original_url;
 
         $article->save();
 
