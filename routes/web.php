@@ -16,4 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MainPageController::class, 'render']);
-Route::get('create-article', [CreateArticlePageController::class, 'render']);
+Route::get('create-article', [CreateArticlePageController::class, 'renderCreateArticle']);
+Route::post('create-article', [CreateArticlePageController::class, 'createAndRedirect']);
+Route::get('create-article-success', [CreateArticlePageController::class, 'renderCreateArticleSuccess']);

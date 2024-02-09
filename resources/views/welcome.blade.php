@@ -14,7 +14,7 @@
                 <img src="{{$article->image}}" alt="{{$article->title}}" class="card-img">
                 <div class="card-body">
                     <div class="card-title">{{$article->title}}</div>
-                    <p class="card-text">{{$article->preview}}</p>
+                    <p class="card-text">{!! $article->preview !!}</p>
 
                     <div class="card-read-more">
                         <a href="{{$article->original_url}}" class="btn btn-primary">Читать дальше</a>
@@ -22,7 +22,7 @@
 
                     <div class="card-categories">
                         @foreach($article->categories as $category)
-                            <a class="btn btn-secondary" href="/category/{{ $category->code }}">{{ $category->name }}</a>
+                            <span class="btn btn-secondary">{{ $category->name }}</span>
                         @endforeach
                     </div>
                 </div>

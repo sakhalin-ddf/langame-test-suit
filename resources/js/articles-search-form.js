@@ -44,7 +44,7 @@
             .replaceAll('{preview}', article.preview)
             .replaceAll(
                 '{categories}',
-                article.categories.map(category => `<a class="btn btn-secondary" href="/category/${category.code ?? ''}">${category.name}</a>`).join(''),
+                article.categories.map(category => `<span class="btn btn-secondary">${category.name}</span>`).join(''),
             )
         ;
     }
