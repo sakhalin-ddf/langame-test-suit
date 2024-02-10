@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\CQRS\CreateArticleHandler;
-use App\CQRS\CreateArticleQuery;
+use App\CQRS\ArticleStoreHandler;
+use App\CQRS\ArticleStoreQuery;
 use App\Models\Article;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -17,7 +17,7 @@ class FillArticlesCommand extends Command
     protected $description = 'Fill articles from lenta.ru';
 
     public function __construct(
-        private readonly CreateArticleHandler $createArticleHandler,
+        private readonly ArticleStoreHandler $createArticleHandler,
     )
     {
         parent::__construct();
@@ -90,7 +90,7 @@ class FillArticlesCommand extends Command
                     continue;
                 }
 
-                $query = new CreateArticleQuery(
+                $query = new ArticleStoreQuery(
                     title: (string) $item->title,
                     preview: $preview,
                     content: "{$preview}\n\n{$preview}\n\n{$preview}\n\n{$preview}\n\n{$preview}",

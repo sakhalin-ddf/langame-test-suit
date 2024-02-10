@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\CQRS;
 
-class CreateArticleQuery
+class ArticleStoreQuery
 {
     public function __construct(
         public readonly string $title,

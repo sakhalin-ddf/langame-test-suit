@@ -8,7 +8,7 @@ use App\Models\Article;
 use App\Repositories\ArticleRepository;
 use App\Services\ArticleCodeGenerator;
 
-class CreateArticleHandler
+class ArticleStoreHandler
 {
     public function __construct(
         private readonly ArticleCodeGenerator $articleCodeGenerator,
@@ -17,7 +17,7 @@ class CreateArticleHandler
         // do nothing
     }
 
-    public function handle(CreateArticleQuery $query): Article
+    public function handle(ArticleStoreQuery $query): Article
     {
         return $this->articleRepository->create(
             code: $this->articleCodeGenerator->generateByTitle($query->title),
