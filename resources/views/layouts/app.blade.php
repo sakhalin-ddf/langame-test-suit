@@ -24,6 +24,15 @@
             </li>
             <li class="nav-item">
                 <a
+                    @class(['nav-link', 'active' => Route::getCurrentRoute()->uri === 'category-list'])
+                    @if(Route::getCurrentRoute()->uri === 'category-list') aria-current="page" @endif
+                    href="/category-list"
+                >
+                    Список категорий
+                </a>
+            </li>
+            <li class="nav-item">
+                <a
                     @class(['nav-link', 'active' => Route::getCurrentRoute()->uri === 'article-create'])
                     @if(Route::getCurrentRoute()->uri === 'article-create') aria-current="page" @endif
                     href="/article-create"

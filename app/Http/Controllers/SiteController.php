@@ -27,7 +27,7 @@ class SiteController
     {
         $query = $request->query->get('query');
 
-        return view('welcome', [
+        return view('article-search', [
             'query' => $query,
             'articles' => $this->articleRepository->getList($query),
         ]);
@@ -46,6 +46,24 @@ class SiteController
 
         return view('article-view', [
             'article' => $article,
+        ]);
+    }
+
+    public function renderCategoryList()
+    {
+        return view('category-list', [
+            'categoryTree' => $this->categoryRepository->tree(),
+        ]);
+    }
+
+    public function renderCategoryView(Request $request, int $categoryId)
+    {
+        $query = $request->query->get('query');
+
+        return view('article-search', [
+            'query' => $query,
+            'category' => $this->categoryRepository->find($categoryId),
+            'articles' => $this->articleRepository->getList($query, $categoryId),
         ]);
     }
 

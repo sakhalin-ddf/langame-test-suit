@@ -19,3 +19,5 @@ Route::get('article/{code}', [SiteController::class, 'renderArticleView']);
 Route::get('article-create', [SiteController::class, 'renderArticleCreate']);
 Route::post('article-create', [SiteController::class, 'createAndRedirect']);
 Route::get('article-create-success', [SiteController::class, 'renderArticleCreateSuccess']);
+Route::get('category-list', [SiteController::class, 'renderCategoryList']);
+Route::get('category/{id}', [SiteController::class, 'renderCategoryView']);

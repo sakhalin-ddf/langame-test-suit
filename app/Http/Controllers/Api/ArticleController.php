@@ -22,7 +22,11 @@ class ArticleController extends Controller
 
     public function search(Request $request): Response
     {
-        $list = $this->articleRepository->getList($request->request->get('query'));
+        $categoryId = $request->request->get('category_id');
+        $list = $this->articleRepository->getList(
+            $request->request->get('query'),
+            $categoryId ? (int) $categoryId : null,
+        );
 
         return new JsonResponse([
             'status' => 'ok',

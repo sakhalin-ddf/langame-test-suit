@@ -25,35 +25,49 @@ class FillCategoriesCommand extends Command
     private array $categories = [
         'Политика' => [
             'Россия',
-            'СНГ',
-            'США',
             'Мир',
+            'США',
+            'СНГ' => [
+                'Казахстан',
+                'Узбекистан',
+                'Таджикистан',
+                'Армения',
+            ],
+            'Ближний восток' => [
+                'Турция',
+                'Иран',
+                'Ирак',
+                'ОАЭ',
+            ],
         ],
 
         'Спорт' => [
             'Футбол' => [
-                'Чемпионат Мира',
+                'Чемпионат Мира Футбол',
                 'Лига чемпионов',
+                'FIFA',
+                'Пляжный футбол',
             ],
 
             'Баскетбол' => [
-                'Чемпионат Мира',
+                'Чемпионат Мира Баскетбол',
                 'NBA',
-                'Женский',
+                'Баскетбол Россия',
+                'Баскетбол Женский',
             ],
 
             'Шахматы' => [
-                'Рапид',
-                'Классика',
-                'Онлайн',
-            ],
-        ],
-
-        'Очень' => [
-            'Ну очень' => [
-                'Прям совсем' => [
-                    'Супер большая' => [
-                        'Вложенность категорий',
+                'Шахматы Рапид',
+                'Шахматы Классика',
+                'Шахматы онлайн',
+                'Шахматы молодежка' => [
+                    'Шахматы, школьники 1-3 классов',
+                    'Шахматы, школьники 5-9 классов',
+                    'Шахматы, школьники 10-11 классов',
+                    'Шахматы, студенты' => [
+                        'Шахматы, студенты МГУ',
+                        'Шахматы, студенты СПБГУ',
+                        'Шахматы, студенты НГУ',
                     ],
                 ],
             ],
@@ -65,7 +79,11 @@ class FillCategoriesCommand extends Command
      */
     public function handle(): int
     {
-        $this->addCategories($this->categories);
+        $exists = DB::table('categories')->exists();
+
+        if ($exists === false) {
+            $this->addCategories($this->categories);
+        }
 
         return self::SUCCESS;
     }
@@ -76,16 +94,12 @@ class FillCategoriesCommand extends Command
             $name = \is_string($key) ? $key : $value;
             $children = \is_array($value) ? $value : [];
 
-            $category = DB::table('categories')->where('name', '=', $name)->get()->first();
+            $category = new Category();
 
-            if ($category === null) {
-                $category = new Category();
+            $category->parent_id = $parentId;
+            $category->name = $name;
 
-                $category->parent_id = $parentId;
-                $category->name = $name;
-
-                $category->save();
-            }
+            $category->save();
 
             $this->addCategories($children, $category->id);
         }

@@ -35,9 +35,14 @@ class ArticleRepository
         return $code;
     }
 
-    public function getList(?string $search = null): iterable
+    public function getList(?string $search = null, ?int $categoryId = null): iterable
     {
         $query = Article::query();
+
+        if ($categoryId) {
+            $query->join('article_category', 'articles.id', '=', 'article_category.article_id', 'inner');
+            $query->where('article_category.category_id', '=', $categoryId);
+        }
 
         if ($search) {
             $query->whereRaw('MATCH(title, content) AGAINST (? IN NATURAL LANGUAGE MODE)', [$search]);

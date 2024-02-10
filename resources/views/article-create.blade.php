@@ -93,7 +93,7 @@
                                 multiple
                                 required
                             >
-                                {!! \App\Helpers\Html::categoryTreeOptions($categoryTree) !!}
+                                {!! \App\Helpers\Html::renderCategoryTreeOptions($categoryTree) !!}
                             </select>
 
                             <div class="pt-2">
@@ -199,7 +199,7 @@
                                 multiple
                                 required
                             >
-                                {!! \App\Helpers\Html::categoryTreeOptions($categoryTree) !!}
+                                {!! \App\Helpers\Html::renderCategoryTreeOptions($categoryTree) !!}
                             </select>
 
                             <div class="pt-2">

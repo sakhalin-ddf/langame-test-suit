@@ -57,9 +57,15 @@ h1 {
 }
 
 .article-list .card-text {
+    flex-grow: 1;
+}
+
+.article-list .card-text p {
+    height: 108px;
     font-size: 14px;
     line-height: 18px;
-    flex-grow: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .article-list .card-read-more {

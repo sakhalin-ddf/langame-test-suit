@@ -8,6 +8,11 @@ use App\Models\Category;
 
 class CategoryRepository
 {
+    public function find(int $id): ?Category
+    {
+        return Category::query()->where('id', '=', $id)->get()->first();
+    }
+
     public function tree(): array
     {
         $list = [];
