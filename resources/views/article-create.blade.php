@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('scripts')
-    @vite('resources/js/articles-create-async-form.js')
-@endsection
-
 @section('content')
     <div class="row">
         <div class="col-lg">

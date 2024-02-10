@@ -7,8 +7,6 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
-                'resources/js/articles-create-async-form.js',
-                'resources/js/articles-search-form.js',
             ],
             refresh: true,
         }),

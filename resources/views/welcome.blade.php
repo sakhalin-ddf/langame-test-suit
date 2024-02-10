@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('scripts')
-    @vite('resources/js/articles-search-form.js')
-@endsection
-
 @section('content')
     <form id="articles-search-form">
         <div class="input-group input-group-lg mb-5">
