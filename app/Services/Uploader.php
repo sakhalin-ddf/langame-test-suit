@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Helpers;
+namespace App\Services;
 
 use Illuminate\Http\UploadedFile as LaravelUploadedFile;
 use Ramsey\Uuid\Uuid;
@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
 
 class Uploader
 {
-    public static function upload(SymfonyUploadedFile $uploadedFile): string
+    public function store(SymfonyUploadedFile $uploadedFile): string
     {
         $uploadedFile = LaravelUploadedFile::createFromBase($uploadedFile);
 

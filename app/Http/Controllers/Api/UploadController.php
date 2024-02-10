@@ -4,17 +4,23 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
-use App\Helpers\Uploader;
+use App\Services\Uploader;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class UploadController
 {
+    public function __construct(
+        private readonly Uploader $uploader,
+    ) {
+        // do nothing
+    }
+
     public function save(Request $request): Response
     {
         $file = $request->files->get('file');
-        $image = $file ? Uploader::upload($file) : null;
+        $image = $file ? $this->uploader->store($file) : null;
 
         return new JsonResponse(
             [

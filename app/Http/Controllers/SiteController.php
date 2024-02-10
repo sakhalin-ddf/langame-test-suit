@@ -6,9 +6,9 @@ namespace App\Http\Controllers;
 
 use App\CQRS\CreateArticleHandler;
 use App\CQRS\CreateArticleQuery;
-use App\Helpers\Uploader;
 use App\Repositories\ArticleRepository;
 use App\Repositories\CategoryRepository;
+use App\Services\Uploader;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -19,6 +19,7 @@ class SiteController
         private readonly ArticleRepository $articleRepository,
         private readonly CategoryRepository $categoryRepository,
         private readonly CreateArticleHandler $createArticleHandler,
+        private readonly Uploader $uploader,
     ) {
         // do nothing
     }
@@ -81,7 +82,7 @@ class SiteController
 
         /** @var UploadedFile $file */
         $file = $request->files->get('file');
-        $image = $file ? Uploader::upload($file) : null;
+        $image = $file ? $this->uploader->store($file) : null;
 
         $query = new CreateArticleQuery(
             title: $request->request->get('title'),

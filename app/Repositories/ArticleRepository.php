@@ -5,34 +5,38 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\Article;
-use Illuminate\Support\Facades\DB;
-use Symfony\Component\String\Slugger\AsciiSlugger;
+use Carbon\Carbon;
 
 class ArticleRepository
 {
-    public function generateUniqueCode(string $title): string
+    public function create(
+        string $code,
+        string $title,
+        string $preview,
+        string $content,
+        array $categories,
+        ?string $image = null,
+        ?string $originalUrl = null,
+        ?\DateTimeInterface $createdAt = null,
+    ): Article
     {
-        $slugger = new AsciiSlugger();
-        $base = $slugger->slug($title, '-', 'ru')->lower()->toString();
+        $timezone = new \DateTimeZone('Europe/Moscow');
+        $article = new Article();
 
-        while(\mb_strlen($base) > 120) {
-            $base = \preg_replace('#-[^-]+$#', '', $base);
-        }
+        $article->code = $code;
+        $article->title = $title;
+        $article->preview = $preview;
+        $article->content = $content;
+        $article->image = $image;
+        $article->original_url = $originalUrl;
+        $article->created_at = $createdAt ? Carbon::parse($createdAt)->timezone($timezone) : new \DateTime('now', $timezone);
+        $article->updated_at = $createdAt ? Carbon::parse($createdAt)->timezone($timezone) : new \DateTime('now', $timezone);
 
-        $suffix = '';
+        $article->save();
 
-        while (true) {
-            $code = $base . $suffix;
-            $exists = DB::query()->from('articles')->where('code', '=', $code)->exists();
+        $article->categories()->attach($categories);
 
-            if ($exists === false) {
-                break;
-            }
-
-            $suffix = '-' . \bin2hex(\random_bytes(4));
-        }
-
-        return $code;
+        return $article;
     }
 
     public function getList(?string $search = null, ?int $categoryId = null): iterable
@@ -56,10 +60,13 @@ class ArticleRepository
         return $query->get();
     }
 
+    public function existsByCode(string $code): bool
+    {
+        return Article::query()->where('code', '=', $code)->exists();
+    }
+
     public function getByCode(string $code): ?Article
     {
-        $result = Article::query()->where('code', '=', $code)->get();
-
-        return $result[0] ?? null;
+        return Article::query()->where('code', '=', $code)->get()->first();
     }
 }
