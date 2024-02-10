@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 (function () {
     'use strict';
 
@@ -17,7 +19,7 @@
         const uploadResponse = await fetch('/api/upload', { method: 'POST', body: formData });
         const uploadJson = await uploadResponse.json();
 
-        const articleRespones = await fetch('/api/articles', {
+        const articleResponse = await fetch('/api/articles', {
             method: 'POST',
             body: JSON.stringify({
                 title: $form.title.value,
@@ -30,5 +32,19 @@
                 'Content-Type': 'application/json',
             },
         });
+        const articleJson = await articleResponse.json();
+
+        Swal.fire({
+            title: 'Ура!',
+            text: 'Статья успешно добавлена!',
+            icon: 'success',
+            confirmButtonText: 'Перейте к статье',
+            showCancelButton: true,
+            cancelButtonText: 'Закрыть',
+        }).then(({ isConfirmed }) => {
+            if (isConfirmed) {
+                location.href = `/article/${articleJson.data.code}`;
+            }
+        })
     });
 })();

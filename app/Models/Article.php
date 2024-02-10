@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 
 /**
  * @property int $id
+ * @property string $code
  * @property string $original_url
  * @property string $image
  * @property string $title

@@ -12,6 +12,8 @@ class CreateArticleQuery
         public readonly string $content,
         public readonly array $categories,
         public readonly ?string $image = null,
+        public readonly ?string $originalUrl = null,
+        public readonly ?\DateTimeInterface $createdAt = null,
     ) {
         // do nothing
     }

@@ -12,10 +12,10 @@
     $form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const query = e.target.query.value.trim();
+        const query = $form.query.value.trim();
         const url = new URL(location.href);
 
-        e.target.query.value = query;
+        $form.query.value = query;
 
         if (query) {
             url.searchParams.set('query', query);
@@ -27,7 +27,7 @@
 
         fetch('/api/articles/search', {
             method: 'POST',
-            body: new FormData(e.target),
+            body: new FormData($form),
         })
             .then(res => res.json())
             .then(({ data }) => {
@@ -36,16 +36,26 @@
     });
 
     function renderArticle(article) {
+        let original_url_host = '';
+
+        try {
+            original_url_host = article.original_url ? new URL(article.original_url).hostname.replace('www.', '') : '';
+        } catch (e) {
+            console.error(e);
+        }
+
         return $articlesTemplate.innerHTML
             .replaceAll('{id}', article.id)
+            .replaceAll('{code}', article.code)
             .replaceAll('{title}', article.title)
             .replaceAll('{original_url}', article.original_url)
-            .replaceAll('{image}', article.image)
+            .replaceAll('{original_url_host}', original_url_host)
+            .replaceAll('{image}', article.image || '/img/no-preview.jpeg')
             .replaceAll('{preview}', article.preview)
             .replaceAll(
                 '{categories}',
                 article.categories.map(category => `<span class="btn btn-secondary">${category.name}</span>`).join(''),
             )
-        ;
+            ;
     }
 })();

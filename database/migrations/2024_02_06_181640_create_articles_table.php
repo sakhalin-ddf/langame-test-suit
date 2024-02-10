@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->engine('InnoDB');
             $table->id();
+            $table->string('code', 255)->unique();
             $table->string('original_url')->nullable();
             $table->string('image')->nullable();
             $table->string('title', 255);

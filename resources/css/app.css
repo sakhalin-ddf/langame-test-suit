@@ -13,6 +13,25 @@ h1 {
     grid-gap: 12px;
 }
 
+.article-list .card {
+    position: relative;
+}
+
+.article-list .original-link-host {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 6px 8px;
+    background: #face8d;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: 4px;
+}
+
+.article-list .original-link-host:empty {
+    display: none;
+}
+
 .article-list .card-img {
     width: 100%;
     aspect-ratio: 16 / 10;
@@ -45,6 +64,7 @@ h1 {
     margin: 0 0 8px;
 }
 
+.article-view .categories,
 .article-list .card-categories {
     display: flex;
     flex-direction: row;
@@ -58,4 +78,72 @@ h1 {
     padding: 6px 6px;
     font-size: 10px;
     line-height: 1;
+}
+
+.article-view h1 {
+    margin: 0 0 12px;
+    font-size: 32px;
+}
+
+.article-view .published {
+    margin: 0 0 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    font-style: italic;
+}
+
+.article-view .categories .btn {
+    padding: 8px 10px;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.article-view .original-link {
+    margin: 0 0 12px;
+    font-size: 20px;
+    color: #555555;
+    font-style: italic;
+    padding: 6px 0 6px 28px;
+    background-image: url(/public/img/icon-link.svg);
+    background-repeat: no-repeat;
+    background-position: left top 12px;
+    background-size: 20px 20px;
+}
+
+.article-view .image {
+    margin: 0 0 48px;
+}
+
+.article-view .image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    object-position: center;
+    object-fit: cover;
+}
+
+.article-view .content {
+    font-size: 18px;
+    line-height: 1.4;
+    text-align: justify;
+}
+
+.article-view .inline-search-form {
+    display: inline-block;
+}
+
+.article-view .inline-search-form .inline-search-form-inner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.article-view .inline-search-form input {
+    width: 300px;
+    background-color: transparent;
+    border: 1px solid #DDDDDD;
+    padding: 6px 16px;
 }

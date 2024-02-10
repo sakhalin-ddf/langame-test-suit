@@ -7,6 +7,7 @@
     <title>Document</title>
     @vite('node_modules/bootstrap/dist/css/bootstrap.min.css')
     @vite('resources/css/app.css')
+    @yield('styles')
 </head>
 <body>
 <div class="pt-5 pb-5">
@@ -39,5 +40,6 @@
     </div>
 </div>
 @vite('resources/js/app.js')
+@yield('scripts')
 </body>
 </html>

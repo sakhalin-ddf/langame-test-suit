@@ -7,24 +7,45 @@ namespace App\Http\Controllers;
 use App\CQRS\CreateArticleHandler;
 use App\CQRS\CreateArticleQuery;
 use App\Helpers\Uploader;
+use App\Repositories\ArticleRepository;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class CreateArticlePageController
+class SiteController
 {
     public function __construct(
+        private readonly ArticleRepository $articleRepository,
         private readonly CategoryRepository $categoryRepository,
         private readonly CreateArticleHandler $createArticleHandler,
     ) {
         // do nothing
     }
 
-    public function renderCreateArticle()
+    public function renderArticleSearch(Request $request)
+    {
+        $query = $request->query->get('query');
+
+        return view('welcome', [
+            'query' => $query,
+            'articles' => $this->articleRepository->getList($query),
+        ]);
+    }
+
+    public function renderArticleCreate()
     {
         return view('article-create', [
             'categoryTree' => $this->categoryRepository->tree(),
+        ]);
+    }
+
+    public function renderArticleView(string $code)
+    {
+        $article = $this->articleRepository->getByCode($code);
+
+        return view('article-view', [
+            'article' => $article,
         ]);
     }
 
@@ -57,7 +78,7 @@ class CreateArticlePageController
         return redirect('article-create-success');
     }
 
-    public function renderCreateArticleSuccess()
+    public function renderArticleCreateSuccess()
     {
         return view('article-create-success');
     }
